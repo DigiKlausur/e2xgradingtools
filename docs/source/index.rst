@@ -1,9 +1,9 @@
-.. Assignment Test documentation master file, created by
+.. E2X Grading Tools documentation master file, created by
    sphinx-quickstart on Wed Apr 12 14:37:49 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Assignment Test's documentation!
+Welcome to E2X Grading Tool's documentation!
 ===========================================
 
 .. toctree::
