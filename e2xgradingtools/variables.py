@@ -11,9 +11,8 @@ class VariableTest(BaseTest):
     ):
         if not self.is_defined(name):
             return False, f"Variable {name} is not defined!"
-        if expected_type:
-            if not self.has_type(name, expected_type):
-                return False, f"Variable {name} is not of type {expected_type}!"
+        if expected_type is not None and not self.has_type(name, expected_type):
+            return False, f"Variable {name} is not of type {expected_type}!"
         try:
             abs_error, rel_error = comparator(self.namespace[name], expected)
             if abs_error <= self.a_tol or rel_error <= self.r_tol:
