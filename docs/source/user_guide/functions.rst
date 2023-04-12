@@ -53,6 +53,7 @@ If no ``reference_function`` is provided, or you want to test against a specific
         target=25
     )
 
+Sometimes we want to perform probabilistic tests that might not always pass. For this we can pass the parameter ``max_reruns``, that specifies how often the test is repeated until it is marked as failed.
 
 Example 1 - Function fails with some arguments
 ==============================================
