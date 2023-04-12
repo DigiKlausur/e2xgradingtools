@@ -25,6 +25,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+    "hatchling",
+    "pre-commit",
     "sphinx",
     "sphinx-rtd-theme"
 ]
