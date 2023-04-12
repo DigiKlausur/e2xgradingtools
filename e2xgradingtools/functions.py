@@ -1,8 +1,9 @@
 import ast
 import inspect
+
+from .base import BaseTest
 from .comparators import compare_numbers
 from .utils import HiddenPrints
-from .base import BaseTest
 
 
 class FunctionTest(BaseTest):

@@ -1,4 +1,4 @@
-from .variables import VariableTest
+from .classes import ClassTest
 from .functions import FunctionTest
 from .utils import grade_report
-from .classes import ClassTest
+from .variables import VariableTest
