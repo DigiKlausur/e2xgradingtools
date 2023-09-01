@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-E2X Grading Tool's Documentation
+E2X Grading Tools Documentation
 ================================
 
 ``e2xgradingtools`` provides a structured approach to execute tests using the global namespace of Jupyter notebooks, with the following highlights:
