@@ -1,15 +1,16 @@
-*****************
+=================
 Testing Functions
-*****************
+=================
 
 Often we want a student to provide an answer in the form of a function. For this we can use the ``FunctionTest`` class.
 
 Setting up the test class
-=========================
+-------------------------
 
 First we need to set up our test class
 
 .. code-block:: python
+    :caption: Initialize the test class
 
     from e2xgradingtools import FunctionTest
 
@@ -31,13 +32,14 @@ Additionally it can be supplied with a custom ``comparator`` function, that take
 More about comparators can be found in the comparator section of the docs.
 
 Anatomy of a test case
-======================
+----------------------
 
 Each test case is a Python dictionary. It receives the argument of the student function in one of three ways.
 This can be a single argument to the function specified with ``arg``, a list of arguments specified with ``args`` or a dictionary of named arguments specified with ``kwargs``.
 
 
 .. code-block:: python
+    :caption: A single test case
 
     test_case = dict(
         arg=5
@@ -47,6 +49,7 @@ If a ``reference_function`` was provided, the tester will take the return value 
 If no ``reference_function`` is provided, or you want to test against a specific output without calling the ``reference_function``, this can be specified with the ``target`` argument:
 
 .. code-block:: python
+    :caption: A single test case with expected value
 
     test_case = dict(
         arg=5,
@@ -56,11 +59,12 @@ If no ``reference_function`` is provided, or you want to test against a specific
 Sometimes we want to perform probabilistic tests that might not always pass. For this we can pass the parameter ``max_reruns``, that specifies how often the test is repeated until it is marked as failed.
 
 Example 1 - Function fails with some arguments
-==============================================
+----------------------------------------------
 
 The student answer:
 
 .. code-block:: python
+    :caption: A simple student answer
 
     def square(x):
         if x < 7:
@@ -70,6 +74,7 @@ The student answer:
 The test:
 
 .. code-block:: python
+    :caption: Test for student answer
 
     from e2xgradingtools import FunctionTest, grade_report
 
@@ -122,11 +127,12 @@ Output:
 
 
 Example 2 - Function has no return statement
-============================================
+--------------------------------------------
 
 The student answer:
 
 .. code-block:: python
+    :caption: A student answer without a return statement
 
     def square(x):
         print(x*x)
@@ -134,6 +140,7 @@ The student answer:
 The test:
 
 .. code-block:: python
+    :caption: Test for student answer
 
     from e2xgradingtools import FunctionTest, grade_report
 
@@ -179,11 +186,12 @@ Output:
 
 
 Example 3 - Function is not defined
-===================================
+-----------------------------------
 
 The student answer:
 
 .. code-block:: python
+    :caption: A student answer with a misspelled function
 
     def square1(x):
         return x*x
@@ -191,6 +199,7 @@ The student answer:
 The test:
 
 .. code-block:: python
+    :caption: Test for student answer
 
     from e2xgradingtools import FunctionTest, grade_report
 
@@ -236,7 +245,7 @@ Output:
 
 
 Example 4 - Student function has a lot of print statements
-==========================================================
+----------------------------------------------------------
 
 Often students have some debug print statements in their code that clutters our tests.
 By default all print statements in student functions are ignored during testing:
@@ -244,6 +253,7 @@ By default all print statements in student functions are ignored during testing:
 The student answer:
 
 .. code-block:: python
+    :caption: A student answer with print statements
 
     def square(x):
         print("="*20)
@@ -253,6 +263,7 @@ The student answer:
 The test:
 
 .. code-block:: python
+    :caption: Test for student answer
 
     from e2xgradingtools import FunctionTest, grade_report
 

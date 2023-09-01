@@ -1,9 +1,9 @@
-*********************
+=====================
 Experimental Features
-*********************
+=====================
 
 Decorator for asserts
-=====================
+---------------------
 
 Often you just want to write simple test cases using ``assert`` statements.
 Asserts have the advantage that they are quick and easy to write. One disadvantage is that when one of many asserts fails, the other tests will not be executed.
@@ -11,6 +11,7 @@ Asserts have the advantage that they are quick and easy to write. One disadvanta
 For this we created a simple decorator. Here is an example:
 
 .. code-block:: python
+    :caption: A student answer
 
     # Student answer
     my_answer_a = 4
@@ -19,6 +20,7 @@ For this we created a simple decorator. Here is an example:
 And the test code
 
 .. code-block:: python
+    :caption: Testing using a decorator
 
     from e2xgradingtools.decorators import test_asserts
 

@@ -1,12 +1,12 @@
-******************
+==================
 Custom Comparators
-******************
+==================
 
 By default all tests will assume that we want to test numbers. 
 Often we might want to test more complex data types. For this you can define a custom comparator function.
 
 Anatomy of a comparator
-=======================
+-----------------------
 
 A comparator has two arguments, ``student_answer`` and ``expected_answer`` and returns a tuple of ``(absolute_error, relative_error)``.
 
@@ -25,7 +25,7 @@ Here is a custom comparator for testing sets:
         return max(abs_error1, abs_error2), rel_error
 
 Example 1 - Variable Test with custom comparator
-================================================
+------------------------------------------------
 
 Here is an example of how we can use this comparator in a ``VariableTest``:
 
@@ -79,7 +79,7 @@ Output:
     ### END GRADE
 
 Example 2 - Function Test with custom comparator
-================================================
+------------------------------------------------
 
 Here is an example of how we can use this comparator in a ``FunctionTest``:
 
