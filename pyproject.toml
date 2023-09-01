@@ -45,7 +45,7 @@ path = "e2xgradingtools/__version__.py"
 github_url = "https://github.com/Digiklausur/e2xgradingtools/"
 
 [tool.tbump.version]
-current = "0.0.2"
+current = "0.0.3"
 
 regex = '''
   (?P<major>\d+)
