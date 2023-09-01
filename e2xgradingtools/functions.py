@@ -40,7 +40,7 @@ class FunctionTest(BaseTest):
         elif "kwargs" in test_case:
             return function(**test_case["kwargs"])
 
-    def run_single_test_case(self, test_case, r_tol=0, a_tol=0):
+    def run_single_test_case(self, test_case):
         if "target" in test_case:
             target = test_case["target"]
         else:
