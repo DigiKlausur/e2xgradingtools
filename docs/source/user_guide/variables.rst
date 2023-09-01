@@ -1,15 +1,16 @@
-*****************
+=================
 Testing Variables
-*****************
+=================
 
 The basic form of testing is the variable test, which is used to check if a student has correctly assigned values to one or more variables.
 
 Setting up the test class
-=========================
+-------------------------
 
 To set up the test class, we need to import the ``VariableTest`` and initialize it with the necessary parameters.
 
 .. code-block:: python
+    :caption: Initialize the test class
 
     from e2xgradingtools import VariableTest
 
@@ -23,11 +24,12 @@ The ``VariableTest`` class requires the ``namespace`` parameter, which is set to
 Additionally, we can set the relative and absolute tolerances for the test, which determine the acceptable margin of error for the expected values.
 
 Anatomy of a test case
-======================
+----------------------
 
 Each test case is a Python dictionary. It has two required entries ``name`` and ``expected``, which specify the name of the variable that should be tested as a string and the expected value.
 
 .. code-block:: python
+    :caption: A single test case
 
     test_case = dict(
         name="my_variable",
@@ -38,11 +40,12 @@ Test cases can also include the type of the answer via the ``expected_type`` ent
 Finally we can specify a ``comparator`` which is a function that compares the expected value to the actual value of the student. See the section about custom comparators for more information.
 
 Examples of tests
-=================
+-----------------
 
 Consider a cell in which the student should give two answers ``my_answer_a`` and ``my_answer_b``:
 
 .. code-block:: python
+    :caption: A student answer
 
     # Student answer
     my_answer_a = 4
@@ -51,6 +54,7 @@ Consider a cell in which the student should give two answers ``my_answer_a`` and
 A test would look like this:
 
 .. code-block:: python
+    :caption: A simple variable test
 
     from e2xgradingtools import VariableTest, grade_report
 

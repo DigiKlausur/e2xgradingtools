@@ -3,19 +3,29 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to E2X Grading Tool's documentation!
-===========================================
+E2X Grading Tool's Documentation
+================================
+
+``e2xgradingtools`` provides a structured approach to execute tests using the global namespace of Jupyter notebooks, with the following highlights:
+
+* Convenient variable and function existence checks
+* Continued execution of remaining tests even if one test fails
+* Hiding of student's print statements during test execution
+* Built-in type checking for robust testing
+* Ability to reference implementation for comparison testing
+* Customizable to suit specific needs
+* Test output can be parsed by ``e2xgrader`` for partial point extraction
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   
+   getting_started/index
 
-   user_guide/highlights
-   user_guide/installation
-   user_guide/variables
-   user_guide/functions
-   user_guide/comparators
-   user_guide/misc
+
+.. toctree::
+   :maxdepth: 2
+
+   user_guide/index
 
 
 

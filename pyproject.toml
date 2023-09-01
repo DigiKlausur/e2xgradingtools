@@ -4,7 +4,6 @@ build-backend = "hatchling.build"
 
 [project]
 name = "e2xgradingtools"
-version = "0.0.2"
 description = "A package for creating autograder tests in Jupyter notebooks"
 readme = "README.md"
 requires-python = ">3.7"
@@ -22,16 +21,52 @@ classifiers = [
 dependencies = [
     "rapidfuzz"
 ]
-
-[project.optional-dependencies]
-dev = [
-    "hatchling",
-    "pre-commit",
-    "sphinx",
-    "sphinx-rtd-theme"
-]
+dynamic = ["version"]
 
 [project.urls]
 Documentation = "https://e2x-grading-tools.readthedocs.io"
 Issues = "https://github.com/Digiklausur/e2xgradingtools/issues"
 Source = "https://github.com/Digiklausur/e2xgradingtools"
+Pypi = "https://pypi.org/project/e2xgradingtools/"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "hatchling",
+    "tbump",
+    "sphinx",
+    "pydata-sphinx-theme"
+]
+
+[tool.hatch.version]
+path = "e2xgradingtools/__version__.py"
+
+[tool.tbump]
+github_url = "https://github.com/Digiklausur/e2xgradingtools/"
+
+[tool.tbump.version]
+current = "0.0.2"
+
+regex = '''
+  (?P<major>\d+)
+  \.
+  (?P<minor>\d+)
+  \.
+  (?P<patch>\d+)
+  (?P<dev>-dev\d+)?
+  '''
+
+[tool.tbump.git]
+message_template = "Bump to {new_version}"
+tag_template = "v{new_version}"
+
+[[tool.tbump.file]]
+src = "e2xgradingtools/__version__.py"
+
+[[tool.tbump.file]]
+src = "docs/source/conf.py"
+
+[tool.ruff]
+line-length = 100
+ignore-init-module-imports = true
+select = ["E", "F", "I"]
