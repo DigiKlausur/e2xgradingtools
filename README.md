@@ -1,6 +1,6 @@
 # E2X Grading Tools
 
-[![PyPi](https://img.shields.io/pypi/v/exam_kernel)](https://pypi.org/project/e2xgradingtools)
+[![PyPi](https://img.shields.io/pypi/v/e2xgradingtools)](https://pypi.org/project/e2xgradingtools)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Documentation Status](https://readthedocs.org/projects/e2x-grading-tools/badge/?version=latest)](https://e2x-grading-tools.readthedocs.io/en/latest/?badge=latest)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
