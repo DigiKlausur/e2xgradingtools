@@ -14,21 +14,58 @@ class CatchAllAssertErrors(ast.NodeTransformer):
         self.n_asserts += 1
         self.generic_visit(node)
 
-        res = ast.parse(
-            dedent(
-                f"""
-            try:                
-                assert True
-                e2x_n_passed += 1
-            except Exception as e:
-                print("!--> " + e.__class__.__name__ + ": " + str(e))
-                print("     Line {node.lineno}: " + '''{self.source[node.lineno-1].strip()}''')
-                print()
-            """
-            )
-        ).body[0]
-        res.body[0] = node
-        return res
+        try_except_block = ast.Try(
+            body=[
+                ast.With(
+                    items=[
+                        ast.withitem(
+                            context_expr=ast.Call(
+                                func=ast.Name(id="HiddenPrints", ctx=ast.Load()),
+                                args=[],
+                                keywords=[],
+                            )
+                        )
+                    ],
+                    body=[
+                        node,
+                        ast.AugAssign(
+                            target=ast.Name(id="e2x_n_passed", ctx=ast.Store()),
+                            op=ast.Add(),
+                            value=ast.Constant(value=1),
+                        ),
+                    ],
+                )
+            ],
+            handlers=[
+                ast.ExceptHandler(
+                    type=ast.Name(id="Exception", ctx=ast.Load()),
+                    name="e",
+                    body=[
+                        ast.AugAssign(
+                            target=ast.Name(id="e2x_n_failed", ctx=ast.Store()),
+                            op=ast.Add(),
+                            value=ast.Constant(value=1),
+                        ),
+                        *ast.parse(
+                            dedent(
+                                f"""
+                    print("!--> " + e.__class__.__name__ + ": " + str(e))
+                    print("     Line {node.lineno}: " + '''{self.source[node.lineno-1].strip()}''')
+                    print("<--!")
+                    print()
+                    """
+                            )
+                        ).body,
+                    ],
+                )
+            ],
+            orelse=[],
+            finalbody=[],
+            lineno=node.lineno,
+            col_offset=node.col_offset,
+        )
+
+        return try_except_block
 
 
 def test_asserts(points):
@@ -46,15 +83,17 @@ def test_asserts(points):
         updated = transformer.visit(tree)
 
         n_passed = "e2x_n_passed"
-        total = transformer.n_asserts
+        n_failed = "e2x_n_failed"
+
         updated.body[0].body.insert(0, ast.parse(f"{n_passed} = 0").body[0])
+        updated.body[0].body.insert(0, ast.parse(f"{n_failed} = 0").body[0])
         updated.body[0].body.insert(
             0, ast.parse("from e2xgradingtools import grade_report").body[0]
         )
 
         updated.body[0].body.append(
             ast.parse(
-                f"print(str({n_passed}) + ' / ' + str({total}) + ' tests passed' )"
+                f"print(str({n_passed}) + ' / ' + str({n_passed} + {n_failed}) + ' tests passed' )"
             ).body[0]
         )
         updated.body[0].body.append(ast.parse("print()").body[0])
@@ -62,7 +101,7 @@ def test_asserts(points):
         if transformer.n_asserts > 0:
             updated.body[0].body.append(
                 ast.parse(
-                    f"grade_report({n_passed}/{transformer.n_asserts}, {points})"
+                    f"grade_report({n_passed}/({n_passed} + {n_failed}), {points})"
                 ).body[0]
             )
         else:
@@ -79,7 +118,6 @@ def test_asserts(points):
         new_function = namespace[method.__name__]
 
         method = functools.update_wrapper(new_function, method)
-        from e2xgradingtools import grade_report
 
         def inner(*args, **kwargs):
             return method(*args, **kwargs)
