@@ -85,6 +85,14 @@ def test_asserts(points):
         n_passed = "e2x_n_passed"
         n_failed = "e2x_n_failed"
 
+        updated.body[0].body.insert(
+            0,
+            ast.ImportFrom(
+                module="e2xgradingtools.utils",
+                names=[ast.alias(name="HiddenPrints", asname=None)],
+                level=0,
+            ),
+        )
         updated.body[0].body.insert(0, ast.parse(f"{n_passed} = 0").body[0])
         updated.body[0].body.insert(0, ast.parse(f"{n_failed} = 0").body[0])
         updated.body[0].body.insert(
