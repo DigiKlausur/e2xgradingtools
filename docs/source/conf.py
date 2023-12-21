@@ -9,7 +9,7 @@
 project = "E2X Grading Tools"
 copyright = "2023, Tim Metzler"
 author = "Tim Metzler"
-release = "0.0.3"
+release = "0.0.4"
 github_project_url = "https://github.com/Digiklausur/e2xgradingtools"
 
 # -- General configuration ---------------------------------------------------
