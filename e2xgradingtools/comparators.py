@@ -7,5 +7,9 @@ def compare_strings(result, target):
 
 def compare_numbers(result, target):
     abs_error = abs(result - target)
-    rel_error = abs(abs_error / target) if target else 0
+    if target != 0:
+        rel_error = abs(abs_error / target)
+    else:
+        # Avoid division by zero
+        rel_error = 0
     return abs_error, rel_error
